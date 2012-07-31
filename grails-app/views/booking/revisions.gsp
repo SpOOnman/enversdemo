@@ -31,7 +31,7 @@
 
             <g:sortableColumn property="revisionEntity.id" title="${message(code: 'envers.id.label', default: 'Revision id')}"/>
 
-            <g:sortableColumn property="name" title="${message(code: 'booking.name.label', default: 'Name')}"/>
+            <g:sortableColumn property="surname" title="${message(code: 'booking.name.label', default: 'Surname')}"/>
 
             <g:sortableColumn property="revisionType" title="${message(code: 'envers.revisionType.label', default: 'Revision type')}"/>
 
@@ -47,7 +47,7 @@
 
                 <td><g:fieldValue field="revisionEntity.id" bean="${bookingRevision}" /></td>
 
-                <td><g:link action="show" id="${bookingRevision.id}"><g:fieldValue field="name" bean="${bookingRevision}" /></g:link></td>
+                <td><g:link action="show" id="${bookingRevision?.id}"><g:fieldValue field="surname" bean="${bookingRevision}" /></g:link></td>
 
                 <td><g:fieldValue field="revisionType" bean="${bookingRevision}" /></td>
 

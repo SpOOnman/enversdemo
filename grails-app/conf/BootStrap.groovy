@@ -4,10 +4,14 @@ import pl.refaktor.enversdemo.Booking
 class BootStrap {
 
     def init = { servletContext ->
-        println("Bootstrap")
-        if (Hotel.count() == 0) {
-            createAstoria()
-            createHolidayInn()
+
+        environments {
+            development {
+                if (Hotel.count() == 0) {
+                    createAstoria()
+                    createHolidayInn()
+                }
+            }
         }
     }
     def destroy = {

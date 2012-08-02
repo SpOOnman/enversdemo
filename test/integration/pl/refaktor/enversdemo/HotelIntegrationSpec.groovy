@@ -1,6 +1,7 @@
 package pl.refaktor.enversdemo
 
 import grails.plugin.spock.IntegrationSpec
+import org.hibernate.SessionFactory
 
 class HotelIntegrationSpec extends IntegrationSpec {
 
@@ -9,8 +10,10 @@ class HotelIntegrationSpec extends IntegrationSpec {
     // Explicitly persist entites in database, I will cleanup, I promise.
     static transactional = false
 
+    SessionFactory sessionFactory
+
     def cleanup() {
-        Hotel.list()*.delete()
+        DatabaseManualCleaner.cleanupDatabase(sessionFactory)
     }
 
     def "Hotel should be audited with Envers"() {

@@ -1,19 +1,21 @@
 package pl.refaktor.enversdemo
 
 import grails.plugin.spock.IntegrationSpec
+import org.hibernate.SessionFactory
 
 class HotelControllerIntegrationSpec extends IntegrationSpec {
 
-    HotelController controller = null
-
     static transactional = false
+
+    HotelController controller = null
+    SessionFactory sessionFactory
 
     def setup() {
         controller = new HotelController()
     }
 
     def cleanup() {
-        Hotel.list()*.delete()
+        DatabaseManualCleaner.cleanupDatabase(sessionFactory)
     }
 
     def "should save hotel with valid parameters along with Envers revision"() {

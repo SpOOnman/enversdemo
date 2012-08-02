@@ -17,6 +17,11 @@ class HotelController {
         [hotelInstanceList: Hotel.list(params), hotelInstanceTotal: Hotel.count()]
     }
 
+    def revisions = {
+        def hotelInstanceList = Hotel.findAllRevisions()
+        render(view: 'revisions', model: [hotelInstanceList: hotelInstanceList, hotelInstanceTotal: hotelInstanceList.size()])
+    }
+
     def create() {
         [hotelInstance: new Hotel(params)]
     }
@@ -100,10 +105,5 @@ class HotelController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'hotel.label', default: 'Hotel'), id])
             redirect(action: "show", id: id)
         }
-    }
-
-    def revisions = {
-        def hotelInstanceList = Hotel.findAllRevisions()
-        render(view: 'revisions', model: [hotelInstanceList: hotelInstanceList, hotelInstanceTotal: hotelInstanceList.size()])
     }
 }

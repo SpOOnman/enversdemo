@@ -61,5 +61,6 @@ grails.project.dependency.resolution = {
 
         // add this
         runtime ":envers:0.3-SNAPSHOT"
+        runtime ":spock:0.6"
     }
 }

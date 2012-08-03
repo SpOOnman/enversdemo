@@ -4,6 +4,7 @@ import pl.refaktor.enversdemo.SpringSecurityServiceHolder
 beans = {
     springSecurityServiceHolder(SpringSecurityServiceHolder, ref('springSecurityService'))
 
-    System.setProperty('org.hibernate.envers.audit_table_prefix', 'AUD_')
-    System.setProperty('org.hibernate.envers.audit_table_suffix', '')
+    // Change it if you want to setup some Envers' configuration options.
+    // System.setProperty('org.hibernate.envers.audit_table_prefix', 'AUD_')
+    // System.setProperty('org.hibernate.envers.audit_table_suffix', '')
 }

@@ -35,12 +35,6 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
         // runtime 'mysql:mysql-connector-java:5.1.20'
-
-        // add this
-        compile ('org.hibernate:hibernate-envers:3.6.10.Final') {
-            // Grails already includes all of the necessary dependencies
-            transitive = false
-        }
     }
 
     plugins {

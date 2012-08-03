@@ -2,6 +2,7 @@ package pl.refaktor.enversdemo
 
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.transaction.annotation.Transactional
+import grails.plugins.springsecurity.Secured
 
 @Transactional
 class HotelController {
@@ -22,10 +23,12 @@ class HotelController {
         render(view: 'revisions', model: [hotelInstanceList: hotelInstanceList, hotelInstanceTotal: hotelInstanceList.size()])
     }
 
+    @Secured(['ROLE_USER'])
     def create() {
         [hotelInstance: new Hotel(params)]
     }
 
+    @Secured(['ROLE_USER'])
     def save() {
         def hotelInstance = new Hotel(params)
         if (!hotelInstance.save(flush: true)) {
@@ -48,6 +51,7 @@ class HotelController {
         [hotelInstance: hotelInstance]
     }
 
+    @Secured(['ROLE_USER'])
     def edit(Long id) {
         def hotelInstance = Hotel.get(id)
         if (!hotelInstance) {
@@ -59,6 +63,7 @@ class HotelController {
         [hotelInstance: hotelInstance]
     }
 
+    @Secured(['ROLE_USER'])
     def update(Long id, Long version) {
         def hotelInstance = Hotel.get(id)
         if (!hotelInstance) {
@@ -88,6 +93,7 @@ class HotelController {
         redirect(action: "show", id: hotelInstance.id)
     }
 
+    @Secured(['ROLE_USER'])
     def delete(Long id) {
         def hotelInstance = Hotel.get(id)
         if (!hotelInstance) {

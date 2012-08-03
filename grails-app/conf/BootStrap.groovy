@@ -1,5 +1,4 @@
-import pl.refaktor.enversdemo.Hotel
-import pl.refaktor.enversdemo.Booking
+import pl.refaktor.enversdemo.*
 
 class BootStrap {
 
@@ -7,6 +6,8 @@ class BootStrap {
 
         environments {
             development {
+                createTestRoleAndUser()
+
                 if (Hotel.count() == 0) {
                     createAstoria()
                     createHolidayInn()
@@ -15,6 +16,20 @@ class BootStrap {
         }
     }
     def destroy = {
+    }
+
+    void createTestRoleAndUser() {
+        User.withTransaction {
+            def userRole = Role.findByAuthority('ROLE_USER') ?: new Role(authority: 'ROLE_USER').save(flush: true, failOnError: true)
+            def testUser = User.findByUsername('admin') ?: new User(
+                    username: 'test',
+                    password: 'test',
+                    enabled: true).save(flush: true, failOnError: true)
+            if (!testUser.authorities.contains(userRole)) {
+                UserRole.create(testUser, userRole)
+            }
+
+        }
     }
 
     void createAstoria() {

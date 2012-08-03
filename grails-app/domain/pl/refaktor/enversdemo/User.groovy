@@ -1,5 +1,8 @@
 package pl.refaktor.enversdemo
 
+import org.hibernate.envers.Audited
+
+@Audited
 class User {
 
     transient springSecurityService
@@ -36,5 +39,10 @@ class User {
 
     protected void encodePassword() {
         password = springSecurityService.encodePassword(password)
+    }
+
+    @Override
+    String toString() {
+        username
     }
 }
